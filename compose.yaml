@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   php:
-    image: php:apache
+    build: ./
     container_name: bbs-php
     volumes:
       - ./src:/var/www/html
@@ -17,6 +17,8 @@ services:
       - MYSQL_DATABASE=database
       - MYSQL_USER=user
       - MYSQL_PASSWORD=secret
+    volumes:
+      - ./db:/var/lib/mysql
     networks:
       - my-network
 
