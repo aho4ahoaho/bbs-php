@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  php:
+    image: php:apache
+    container_name: bbs-php
+    volumes:
+      - ./src:/var/www/html
+    ports:
+      - 21114:80
+    networks:
+      - my-network
+  db:
+    image: mariadb
+    container_name: bbs-db
+    environment:
+      - MYSQL_ROOT_PASSWORD=secret
+      - MYSQL_DATABASE=database
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=secret
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
